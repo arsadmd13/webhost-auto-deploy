@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const appSchema = {
+    appId: {
+        type: String,
+        required: true
+    },
     appName: {
         type: String,
         required: true
@@ -13,11 +17,23 @@ const appSchema = {
         type: String,
         required: true
     },
+    pathPrefix: {
+        type: String,
+        required: true
+    },
+    hostingProvider: {
+        type: String,
+        required: true
+    },
     gitUsername: {
         type: String,
         required: true
     },
     gitPassword: {
+        type: String,
+        required: true
+    },
+    gitToken: {
         type: String,
         required: true
     },

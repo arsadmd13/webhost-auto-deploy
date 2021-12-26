@@ -5,17 +5,17 @@ module.exports = (req, res, next) => {
     let requestToken = req.params.requestToken;
     App.findOne({requestToken}, (err, record) => {
         if(err) {
-            res.sendStatus(500);
+            return res.sendStatus(500);
         } else if(record) {
             const sig = req.headers['x-hub-signature-256'];
             if (!verify(sig, record.passphrase, JSON.stringify(req.body))) {
-                res.sendStatus(403);
+                return res.sendStatus(403);
             } else {
                 res.locals = record;
                 next();
             }
         } else {
-            res.sendStatus(404);
+            return res.sendStatus(404);
         }
     })
 }
